@@ -1,16 +1,20 @@
 import React from 'react'
-import { Box, Text } from '@chakra-ui/react'
+import {
+    Box,
+    Text,
+    Button
+} from '@chakra-ui/react'
 import { InputBasic } from '../Inputs/InputBasic'
 import { ButtonBasic } from '../Buttons/ButtonBasic'
 import { styles } from '../../config/styles'
 
 export const CardLogin = (props) => {
+
+
+
     return (
         <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
+            style={styles.cardsFlexColumn}
             background="white"
             minWidth="30vw"
             minHeight="60vh"
@@ -19,13 +23,16 @@ export const CardLogin = (props) => {
             gap={3}
         >
             <Text
-            style={styles.textTitles}
-            
+                style={styles.textTitles}
             >
                 Faça Seu Login !
             </Text>
-            <InputBasic />
+            <InputBasic
+                label={"Label"}
+                onChange={(event) => { console.log(event.target.value); return event.target.value }}
+            />
             <ButtonBasic >Button</ButtonBasic>
+            <Button>Standard Button</Button>
         </Box>
     )
 }

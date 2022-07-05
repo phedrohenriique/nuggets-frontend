@@ -1,12 +1,27 @@
 import React from 'react'
-import { Input } from '@chakra-ui/react'
+import {
+  Input,
+  Box,
+  Text
+} from '@chakra-ui/react'
+import { styles } from '../../config/styles'
 
 export const InputBasic = (props) => {
+
   return (
-    <Input
-      ref={props.ref}
+    <Box
+      style={styles.cardsFlexColumn}
+      gap={3}
     >
-      {props.children}
-    </Input>
+      <Text
+        alignSelf="flex-start"
+        style={styles.textInputs}
+      >
+        {props.label}
+      </Text>
+      <Input
+        {...props}
+      />
+    </Box>
   )
 }

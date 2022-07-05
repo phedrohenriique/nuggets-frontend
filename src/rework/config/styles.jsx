@@ -10,13 +10,27 @@ const pages = {
     alignItems: "center"
 }
 
+const cardsFlexRow = {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+}
+
+const cardsFlexColumn = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center"
+}
+
 const textTitles = {
     fontFamily: fonts.montserrat,
     weight: "bold"
 }
 
 const textInputs = {
-    fontFamily: fonts.nunito,
+    fontFamily: fonts.montserrat,
     weight: "bold"
 }
 
@@ -27,5 +41,7 @@ const buttonColor = {
 export const styles = {
     pages,
     textTitles,
-    textInputs
+    textInputs,
+    cardsFlexColumn,
+    cardsFlexRow
 }
