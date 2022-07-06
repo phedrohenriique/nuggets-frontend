@@ -1,5 +1,5 @@
 import React from 'react'
-import { StepBasic } from '../../components/Steps/StepBasic'
+import { StepBasic } from '../../Steps/StepBasic'
 
 export const Register = (props) => {
     return (

@@ -3,6 +3,7 @@ import {
     Button,
     Text
  } from "./variants";
+ import { StepsStyleConfig as Steps } from "chakra-ui-steps";
 
 export const theme = extendTheme({
     //styles,
@@ -10,7 +11,8 @@ export const theme = extendTheme({
     // other foundational styles go there
     components: {
         Button,
-        Text
+        Text,
+        Steps
         // components with their variant go there
     },
 

@@ -50,17 +50,18 @@ export const CardLogin = (props) => {
             >
                 <Button
                     fontSize="md"
-                    width="50%"
+                    minWidth="50%"
                 >
                     Login
                 </Button>
                 <Link
-                style={styles.linkComponent}
-                href="/register"
+                    style={styles.linkComponent}
+                    href="/register"
+                    minWidth="50%"
                 >
                     <Button
                         fontSize="md"
-                        width="fit-content"
+                        width="100%"
                     >
                         Create Account
                     </Button>
