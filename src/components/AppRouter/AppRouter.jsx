@@ -1,13 +1,14 @@
 import React from "react";
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Home } from "../../rework/pages/Home/Home";
+import { Register } from "../../rework/pages/Register/Register";
 
 export default function AppRouter() {
     return (
         <Routes>
             <Route path="/component" element={<>Component</>} />
             <Route path="/login" element={<>Login</>} />
-            <Route path="/signup" element={<>SignUp</>} />
+            <Route path="/register" element={<Register />} />
             {/* <Route element={<PrivateRoute redirectTo='login' />} > */}
             <Route path="/" element={<Home />} />
             <Route path="/client" element={<>ClientDetails</>} />

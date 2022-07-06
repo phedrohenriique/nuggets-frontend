@@ -10,6 +10,7 @@ export const InputBasic = (props) => {
 
   return (
     <Box
+      width="100%"
       style={styles.cardsFlexColumn}
       gap={3}
     >

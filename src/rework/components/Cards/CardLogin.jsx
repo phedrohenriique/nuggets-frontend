@@ -2,7 +2,8 @@ import React from 'react'
 import {
     Box,
     Text,
-    Button
+    Button,
+    Link
 } from '@chakra-ui/react'
 import { InputBasic } from '../Inputs/InputBasic'
 import { ButtonBasic } from '../Buttons/ButtonBasic'
@@ -24,15 +25,63 @@ export const CardLogin = (props) => {
         >
             <Text
                 style={styles.textTitles}
+                fontSize="2xl"
             >
-                Faça Seu Login !
+                Login
             </Text>
             <InputBasic
-                label={"Label"}
-                onChange={(event) => { console.log(event.target.value); return event.target.value }}
+                label="Email"
+                type="text"
             />
-            <ButtonBasic >Button</ButtonBasic>
-            <Button>Standard Button</Button>
+            <InputBasic
+                label="Password"
+                type="text"
+            />
+            <Link
+                alignSelf="flex-start"
+                style={styles.link}
+            >
+                Forgot Password ?
+            </Link>
+            <Box
+                style={styles.cardsFlexRow}
+                width="100%"
+                gap={3}
+            >
+                <Button
+                    fontSize="md"
+                    width="50%"
+                >
+                    Login
+                </Button>
+                <Link
+                style={styles.linkComponent}
+                href="/register"
+                >
+                    <Button
+                        fontSize="md"
+                        width="fit-content"
+                    >
+                        Create Account
+                    </Button>
+                </Link>
+            </Box>
+            <Box
+                style={styles.cardsFlexColumn}
+            >
+                <Text
+                    style={styles.textTitles}
+                >
+                    Or Enter With :
+                </Text>
+                <Box
+                    style={styles.cardsFlexRow}
+                    gap={3}
+                >
+                    <Box width="50px" height="50px" background="red" />
+                    <Box width="50px" height="50px" background="blue" />
+                </Box>
+            </Box>
         </Box>
     )
 }

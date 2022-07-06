@@ -1,3 +1,4 @@
 export const colors = {
-    pagesBackground: "#A897F0"
+    pagesBackground: "#6A6097",
+    link: "#6A6097"
 }
