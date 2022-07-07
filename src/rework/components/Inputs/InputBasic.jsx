@@ -21,6 +21,13 @@ export const InputBasic = (props) => {
         {props.label}
       </Text>
       <Input
+        _hover={{
+          background: "#80808070"
+        }}
+        _focus={{
+          background: "#80808070",
+          border: "2px solid #6A609770"
+        }}
         {...props}
       />
     </Box>

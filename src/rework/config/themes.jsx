@@ -1,9 +1,10 @@
 import { extendTheme } from "@chakra-ui/react";
-import { 
+import {
     Button,
-    Text
- } from "./variants";
- import { StepsStyleConfig as Steps } from "chakra-ui-steps";
+    Text,
+    Input
+} from "./variants";
+import { StepsStyleConfig as Steps } from "chakra-ui-steps";
 
 export const theme = extendTheme({
     //styles,
@@ -12,7 +13,8 @@ export const theme = extendTheme({
     components: {
         Button,
         Text,
-        Steps
+        Steps,
+        Input
         // components with their variant go there
     },
 

@@ -6,21 +6,18 @@ import {
     Link
 } from '@chakra-ui/react'
 import { InputBasic } from '../Inputs/InputBasic'
-import { ButtonBasic } from '../Buttons/ButtonBasic'
 import { styles } from '../../config/styles'
 
 export const CardLogin = (props) => {
-
-
 
     return (
         <Box
             style={styles.cardsFlexColumn}
             background="white"
-            minWidth="30vw"
+            minWidth="25vw"
             minHeight="60vh"
-            borderRadius="5%"
-            padding="2%"
+            borderRadius={15}
+            padding={6}
             gap={3}
         >
             <Text
@@ -30,10 +27,12 @@ export const CardLogin = (props) => {
                 Login
             </Text>
             <InputBasic
+                placeholder="user@mail.com"
                 label="Email"
                 type="text"
             />
             <InputBasic
+                placeholder="123abc"
                 label="Password"
                 type="text"
             />
@@ -45,23 +44,22 @@ export const CardLogin = (props) => {
             </Link>
             <Box
                 style={styles.cardsFlexRow}
-                width="100%"
+                minWidth="fit-content"
                 gap={3}
             >
                 <Button
+                    maxWidth="50%"
                     fontSize="md"
-                    minWidth="50%"
                 >
                     Login
                 </Button>
                 <Link
                     style={styles.linkComponent}
                     href="/register"
-                    minWidth="50%"
+                    maxWidth="50%"
                 >
                     <Button
                         fontSize="md"
-                        width="100%"
                     >
                         Create Account
                     </Button>
@@ -69,6 +67,7 @@ export const CardLogin = (props) => {
             </Box>
             <Box
                 style={styles.cardsFlexColumn}
+                minHeight="fit-content"
             >
                 <Text
                     style={styles.textTitles}

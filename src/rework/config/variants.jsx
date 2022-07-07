@@ -1,5 +1,6 @@
 import { colors } from "./colors"
 import { fonts } from "./fonts"
+import { StyleFunctionProps } from "@chakra-ui/theme-tools"
 
 export const Button = {
     baseStyle: {
@@ -15,7 +16,7 @@ export const Button = {
         "basicButton": {
             color: "white",
             background: "#6A6097",
-            _hover:{
+            _hover: {
                 background: "#6A609795"
             },
             _active: {
@@ -30,18 +31,45 @@ export const Button = {
 
 export const Text = {
     baseStyle: {
-       
+
     },
     sizes: {
 
     },
     variants: {
-        "baiscText":{
+        "basicText": {
             fontFamily: fonts.nunito,
             fontWeight: "bold"
         }
     },
     defaultProps: {
-        
+        variant: "basicText"
+    }
+}
+
+export const Input = {
+    baseStyle: {
+
+    },
+    sizes: {
+
+    },
+    variants: {
+        "filled": {
+            _hover: {
+                background: "gray",
+                border: `2px solid ${colors.inputBorder}`
+            },
+            _focus: {
+                background: "gray",
+                border: `2px solid ${colors.inputBorder}`
+            },
+        },
+        "basicInput": {
+            all: "unset"
+        },
+    },
+    defaultProps: {
+        variant: "basicInput"
     }
 }

@@ -10,6 +10,12 @@ const pages = {
     alignItems: "center"
 }
 
+const cardsCenterItems = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+}
+
 const cardsFlexRow = {
     display: "flex",
     flexDirection: "row",
@@ -31,7 +37,11 @@ const textTitles = {
 
 const textInputs = {
     fontFamily: fonts.montserrat,
-    weight: "bold"
+    weight: "bold",
+}
+
+const input = {
+
 }
 
 const link = {
@@ -52,6 +62,8 @@ export const styles = {
     textInputs,
     cardsFlexColumn,
     cardsFlexRow,
+    cardsCenterItems,
+    input,
     link,
     linkComponent
 }
