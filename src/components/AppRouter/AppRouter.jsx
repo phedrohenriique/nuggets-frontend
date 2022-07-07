@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Home } from "../../rework/pages/Home/Home";
 import { Register } from "../../rework/pages/Register/Register";
 

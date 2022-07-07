@@ -3,9 +3,9 @@ import { Box, Button } from '@chakra-ui/react'
 import { StepBasic } from '../../components/Steps/StepBasic'
 import { CardRegister } from '../../components/Cards/CardRegister'
 import { CardPassword } from '../../components/Cards/CardPassword'
+import { CardSuccess } from '../../components/Cards/CardSuccess'
 import { styles } from '../../config/styles'
 import { useSteps } from 'chakra-ui-steps'
-import { Card } from '@material-ui/core'
 
 export const Register = (props) => {
 
@@ -60,11 +60,11 @@ export const Register = (props) => {
                     activeStep={activeStepHandler(activeStep)}
                     stepList={steps}
                 />
-                {activeStep == 0
+                {activeStep === 0
                     ? <CardRegister />
-                    : activeStep == 1
+                    : activeStep === 1
                         ? <CardPassword />
-                        : <CardRegister />
+                        : <CardSuccess />
                 }
                 <Box
                     style={styles.cardsFlexRow}

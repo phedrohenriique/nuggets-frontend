@@ -1,6 +1,5 @@
 import { colors } from "./colors"
 import { fonts } from "./fonts"
-import { StyleFunctionProps } from "@chakra-ui/theme-tools"
 
 export const Button = {
     baseStyle: {
@@ -17,10 +16,10 @@ export const Button = {
             color: "white",
             background: "#6A6097",
             _hover: {
-                background: "#6A609795"
+                transform: "scale(1.05)"
             },
             _active: {
-                background: "#6A609750" // just add two last values to change opacity
+                background: "#6A609780" // just add two last values to change opacity
             }
         }
     },

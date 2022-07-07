@@ -40,20 +40,12 @@ const textInputs = {
     weight: "bold",
 }
 
-const input = {
-
-}
-
 const link = {
     color: colors.link
 }
 
 const linkComponent = {
     all: "unset"
-}
-
-const buttonColor = {
-
 }
 
 export const styles = {
@@ -63,7 +55,6 @@ export const styles = {
     cardsFlexColumn,
     cardsFlexRow,
     cardsCenterItems,
-    input,
     link,
     linkComponent
 }

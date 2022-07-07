@@ -1,4 +1,4 @@
-import { Step, Steps, useSteps } from 'chakra-ui-steps'
+import { Step, Steps } from 'chakra-ui-steps'
 import React from 'react'
 
 export const StepBasic = (props) => {
