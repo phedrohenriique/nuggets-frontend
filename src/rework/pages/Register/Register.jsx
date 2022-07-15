@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, Link } from '@chakra-ui/react'
 import { StepBasic } from '../../components/Steps/StepBasic'
 import { CardRegister } from '../../components/Cards/CardRegister'
 import { CardPassword } from '../../components/Cards/CardPassword'
@@ -69,14 +69,37 @@ export const Register = (props) => {
                 <Box
                     style={styles.cardsFlexRow}
                     gap={3}
+                    width="50%"
                 >
-                    <Button width="50%" onClick={() => { prevStep(1) }}>
-                        Previous
-                    </Button>
-                    <Button width="50%" onClick={() => { nextStep(1) }}>
-                        Next
-                    </Button>
-
+                    {activeStep === 0
+                        ? <>
+                            <Link href="/" style={styles.linkComponent}>
+                                <Button minWidth="50%">
+                                    Already Registered !
+                                </Button>
+                            </Link>
+                            <Button minWidth="50%" onClick={() => { nextStep(1) }}>
+                                Confirm
+                            </Button>
+                        </>
+                        : activeStep === 1
+                            ? <>
+                                <Button width="50%" onClick={() => { prevStep(1) }}>
+                                    Previous
+                                </Button>
+                                <Button width="50%" onClick={() => { setStep(3) }}>
+                                    Submit
+                                </Button>
+                            </>
+                            : <Link
+                                href="/"
+                                style={styles.linkComponent}
+                            >
+                                <Button>
+                                    Back to Login
+                                </Button>
+                            </Link>
+                    }
                 </Box>
             </Box>
         </Box>

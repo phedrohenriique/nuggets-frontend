@@ -1,7 +1,9 @@
 import React from 'react'
 import {
     Box,
-    Text
+    Text,
+    Link,
+    Button
 } from '@chakra-ui/react'
 import { styles } from '../../config/styles'
 
@@ -21,7 +23,7 @@ export const CardSuccess = (props) => {
                 style={styles.textTitles}
                 fontSize="2xl"
             >
-                Registration Complete
+                Registration Complete !
             </Text>
         </Box>
     )
