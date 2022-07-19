@@ -3,6 +3,7 @@ import React from "react";
 import { instance } from '../config/variables/api'
 
 export default function useApi() {
+
     const get = async (url, token) => {
         try {
             const { data } = await instance.get(
@@ -16,6 +17,7 @@ export default function useApi() {
             throw new Error(err.response.data.message)
         }
     }
+    
     const post = async (url, data, token) => {
         try {
             const resp = await instance.post(url, data, {
