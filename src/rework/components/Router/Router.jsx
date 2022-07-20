@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from 'react-router-dom';
-import { Home } from "../../rework/pages/Home/Home";
-import { Register } from "../../rework/pages/Register/Register";
+import { Home } from "../../pages/Home/Home";
+import { Register } from "../../pages/Register/Register";
 
-export default function AppRouter() {
+export default function Router() {
     return (
         <Routes>
             <Route path="/component" element={<>Component</>} />
