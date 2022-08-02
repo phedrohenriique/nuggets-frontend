@@ -5,6 +5,7 @@ import {
 } from '@chakra-ui/react'
 import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
+import { request } from '../../hooks/apis'
 
 export const CardRegister = (props) => {
 
@@ -12,9 +13,6 @@ export const CardRegister = (props) => {
         name: '',
         email: ''
     })
-
-
-    console.log("data inside component : ", data)
 
     return (
         <Box

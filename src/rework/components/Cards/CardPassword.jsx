@@ -43,7 +43,6 @@ export const CardPassword = (props) => {
                         setData({ ...data, confirmedPassword: true })
                         props.setData(data.password);
                     }
-
                 }}
             />
             <Box
