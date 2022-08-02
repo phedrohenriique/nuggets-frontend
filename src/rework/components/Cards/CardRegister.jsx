@@ -8,6 +8,14 @@ import { styles } from '../../config/styles'
 
 export const CardRegister = (props) => {
 
+    const [data, setData] = React.useState({
+        name: '',
+        email: ''
+    })
+
+
+    console.log("data inside component : ", data)
+
     return (
         <Box
             style={styles.cardsFlexColumn}
@@ -28,11 +36,19 @@ export const CardRegister = (props) => {
                 placeholder="Name Surname"
                 label="Name"
                 type="text"
+                onChange={(event) => {
+                    setData({ ...data, name: event.target.value })
+                    props.setData({ ...data })
+                }}
             />
             <InputBasic
                 placeholder="user@mail.com"
                 label="Email"
                 type="text"
+                onChange={(event) => {
+                    setData({ ...data, email: event.target.value })
+                    props.setData({ ...data })
+                }}
             />
             <Box
                 style={styles.cardsFlexRow}

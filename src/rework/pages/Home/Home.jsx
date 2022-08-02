@@ -4,19 +4,12 @@ import { styles } from '../../config/styles'
 import { CardLogin } from '../../components/Cards/CardLogin'
 import { request } from '../../hooks/apis'
 
-export const Home = (props) => {
-    const [fetchData, setFetchData] = React.useState(null)
+export const Home = () => {
+
     const jsonData = {
         name: "pedro",
         email: "pedro@mail.com",
         password: "123"
-    }
-
-    const requestConfig = {
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*"
-        }
     }
 
     const dataHandlerGet = async () => {
@@ -38,12 +31,7 @@ export const Home = (props) => {
         }
         catch (error) {
             if (error.response) {
-                console.log("error request : ", error.request)
-                console.log("error message : ", error.message)
-                console.log("error response : ", error)
-                console.log("error status : ", error.response.status)
-                console.log("error headers : ", error.response.headers)
-                console.log("error data : ", error.response.data)
+                console.log("Error at request")
             }
         }
     }

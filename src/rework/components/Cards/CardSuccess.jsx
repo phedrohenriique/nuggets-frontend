@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react'
 import { styles } from '../../config/styles'
 
-export const CardSuccess = (props) => {
+export const CardSuccess = () => {
 
     return (
         <Box

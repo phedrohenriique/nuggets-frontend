@@ -7,6 +7,10 @@ import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
 
 export const CardPassword = (props) => {
+    const [data, setData] = React.useState({
+        password: '',
+        confirmedPassword: false
+    })
 
     return (
         <Box
@@ -28,11 +32,19 @@ export const CardPassword = (props) => {
                 placeholder="123abc"
                 label="Password"
                 type="password"
+                onChange={(event) => { setData({ ...data, password: event.target.value }) }}
             />
             <InputBasic
                 placeholder="123abc"
                 label="Confirm Password"
                 type="password"
+                onChange={(event) => {
+                    if (event.target.value == data.password) {
+                        setData({ ...data, confirmedPassword: true })
+                        props.setData(data.password);
+                    }
+
+                }}
             />
             <Box
                 style={styles.cardsFlexRow}

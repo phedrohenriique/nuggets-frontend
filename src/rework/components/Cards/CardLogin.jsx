@@ -8,7 +8,7 @@ import {
 import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
 
-export const CardLogin = (props) => {
+export const CardLogin = () => {
 
     return (
         <Box

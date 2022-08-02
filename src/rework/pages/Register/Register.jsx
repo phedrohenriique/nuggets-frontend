@@ -1,5 +1,13 @@
 import React from 'react'
-import { Box, Button, Link } from '@chakra-ui/react'
+import {
+    Box,
+    Button,
+    Link,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    FormHelperText
+} from '@chakra-ui/react'
 import { StepBasic } from '../../components/Steps/StepBasic'
 import { CardRegister } from '../../components/Cards/CardRegister'
 import { CardPassword } from '../../components/Cards/CardPassword'
@@ -10,6 +18,8 @@ import { useSteps } from 'chakra-ui-steps'
 export const Register = (props) => {
 
     const { nextStep, prevStep, setStep, activeStep } = useSteps({ initialStep: 0 })
+    const [registerData, setRegisterData] = React.useState({})
+    const [registerPassword, setRegisterPassword] = React.useState('')
 
     const steps = [
         {
@@ -44,7 +54,8 @@ export const Register = (props) => {
 
     React.useEffect(() => {
         console.log("active step : ", activeStep)
-    }, [activeStep])
+        console.log("data : ", registerData)
+    }, [activeStep, registerData])
 
     return (
         <Box style={styles.pages}>
@@ -60,47 +71,53 @@ export const Register = (props) => {
                     activeStep={activeStepHandler(activeStep)}
                     stepList={steps}
                 />
-                {activeStep === 0
-                    ? <CardRegister />
-                    : activeStep === 1
-                        ? <CardPassword />
-                        : <CardSuccess />
-                }
-                <Box
-                    style={styles.cardsFlexRow}
-                    gap={3}
-                    width="50%"
-                >
+                <FormControl onSubmit={() => {
+                    setStep(3);
+                    setRegisterData({ ...registerData, password: registerPassword })
+                    console.log(registerData)
+                }}>
                     {activeStep === 0
-                        ? <>
-                            <Link href="/" style={styles.linkComponent}>
-                                <Button minWidth="50%">
-                                    Already Registered !
-                                </Button>
-                            </Link>
-                            <Button minWidth="50%" onClick={() => { nextStep(1) }}>
-                                Confirm
-                            </Button>
-                        </>
+                        ? <CardRegister setData={setRegisterData} />
                         : activeStep === 1
+                            ? <CardPassword setData={setRegisterPassword} />
+                            : <CardSuccess />
+                    }
+                    <Box
+                        style={styles.cardsFlexRow}
+                        gap={3}
+                        width="50%"
+                    >
+                        {activeStep === 0
                             ? <>
-                                <Button width="50%" onClick={() => { prevStep(1) }}>
-                                    Previous
-                                </Button>
-                                <Button width="50%" onClick={() => { setStep(3) }}>
-                                    Submit
+                                <Link href="/" style={styles.linkComponent}>
+                                    <Button minWidth="50%">
+                                        Already Registered !
+                                    </Button>
+                                </Link>
+                                <Button minWidth="50%" onClick={() => { nextStep(1) }}>
+                                    Confirm
                                 </Button>
                             </>
-                            : <Link
-                                href="/"
-                                style={styles.linkComponent}
-                            >
-                                <Button>
-                                    Back to Login
-                                </Button>
-                            </Link>
-                    }
-                </Box>
+                            : activeStep === 1
+                                ? <>
+                                    <Button width="50%" onClick={() => { prevStep(1) }}>
+                                        Previous
+                                    </Button>
+                                    <Button width="50%" type="submit">
+                                        Submit
+                                    </Button>
+                                </>
+                                : <Link
+                                    href="/"
+                                    style={styles.linkComponent}
+                                >
+                                    <Button>
+                                        Back to Login
+                                    </Button>
+                                </Link>
+                        }
+                    </Box>
+                </FormControl>
             </Box>
         </Box>
     )
