@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react'
 import { styles } from '../../config/styles'
 
-export const InputBasic = (props) => {
+export const InputBasic = React.forwardRef((props, ref) => {
 
   return (
     <Box
@@ -29,7 +29,8 @@ export const InputBasic = (props) => {
           border: "2px solid #6A609770"
         }}
         {...props}
+        ref={ref}
       />
     </Box>
   )
-}
+})

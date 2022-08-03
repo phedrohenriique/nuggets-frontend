@@ -3,10 +3,7 @@ import {
     Box,
     Button,
     Link,
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    FormHelperText
+    Text
 } from '@chakra-ui/react'
 import { StepBasic } from '../../components/Steps/StepBasic'
 import { CardRegister } from '../../components/Cards/CardRegister'
@@ -21,6 +18,12 @@ export const Register = (props) => {
     const { nextStep, prevStep, setStep, activeStep } = useSteps({ initialStep: 0 })
     const [registerData, setRegisterData] = React.useState({})
     const [registerPassword, setRegisterPassword] = React.useState('')
+    const [formError, setFormError] = React.useState(false)
+
+    const dataHandler = () => {
+        const data = { ...registerData, password: registerPassword.password }
+        return data
+    }
 
     const steps = [
         {
@@ -54,10 +57,7 @@ export const Register = (props) => {
     ////////////////// DEBUG //////////////////////
 
     React.useEffect(() => {
-        //console.log("active step : ", activeStep)
-        //console.log("data : ", registerData)
-        setRegisterData({ ...registerData, password: registerPassword })
-    }, [activeStep, registerData])
+    }, [activeStep])
 
     return (
         <Box style={styles.pages}>
@@ -91,23 +91,58 @@ export const Register = (props) => {
                                     Already Registered !
                                 </Button>
                             </Link>
-                            <Button minWidth="50%" onClick={() => { nextStep(1) }}>
+                            <Button minWidth="50%" onClick={() => {
+                                nextStep(1)
+                            }}>
                                 Confirm
                             </Button>
                         </>
                         : activeStep === 1
-                            ? <>
-                                <Button width="50%" onClick={() => { prevStep(1) }}>
-                                    Previous
-                                </Button>
-                                <Button width="50%" onClick={async () => {
-                                    console.log("data : ", registerData)
-                                    await request.post("/users", JSON.stringify(registerData))
-                                    setStep(3);
-                                }}>
-                                    Submit
-                                </Button>
-                            </>
+                            ? <Box
+                                display="flex"
+                                flexDirection="column"
+                            >{
+                                    formError
+                                        ? <Text style={styles.errorText}>
+                                            There was an error, review your info please !
+                                        </Text>
+                                        : ''
+                                }
+                                <Box
+                                    display="flex"
+                                    flexDirection="row"
+                                    gap={2}
+                                >
+                                    <Button width="50%" onClick={() => {
+                                        setFormError(false)
+                                        prevStep(1)
+                                    }}>
+                                        Previous
+                                    </Button>
+                                    <Button width="50%" onClick={async () => {
+                                        console.log(registerPassword)
+                                        if (registerPassword.confirmedPassword === true) {
+                                            try {
+                                                await request.post("/users", JSON.stringify(dataHandler()))
+                                                setStep(3);
+                                            }
+                                            catch (error) {
+                                                console.log("Error, invalid inputs : ", error)
+                                                setFormError(true)
+                                                return
+                                            }
+                                        }
+                                        else {
+                                            console.log("Error, password don't match, register")
+                                            setFormError(true)
+                                            return
+                                        }
+                                    }}>
+                                        Submit
+                                    </Button>
+                                </Box>
+
+                            </Box>
                             : <Link
                                 href="/"
                                 style={styles.linkComponent}

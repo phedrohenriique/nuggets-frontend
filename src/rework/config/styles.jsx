@@ -48,6 +48,12 @@ const linkComponent = {
     all: "unset"
 }
 
+const errorText = {
+    color: colors.errorColor,
+    fontFamily: fonts.montserrat,
+    weight: "bold",
+}
+
 export const styles = {
     pages,
     textTitles,
@@ -56,5 +62,6 @@ export const styles = {
     cardsFlexRow,
     cardsCenterItems,
     link,
-    linkComponent
+    linkComponent,
+    errorText
 }

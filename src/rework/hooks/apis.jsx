@@ -7,5 +7,6 @@ export const request = axios.create({
     timeout: 1000
 })
 
+//request.defaults.method="no-cors"
 //request.defaults.headers.post["Content-Type"] = "application/json"
 //request.defaults.headers.post["Access-Control-Allow-Origin"] = "*"

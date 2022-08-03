@@ -39,9 +39,14 @@ export const CardPassword = (props) => {
                 label="Confirm Password"
                 type="password"
                 onChange={(event) => {
-                    if (event.target.value == data.password) {
+                    if (event.target.value === data.password) {
+                        console.log("passwords match")
                         setData({ ...data, confirmedPassword: true })
-                        props.setData(data.password);
+                        props.setData({ ...data });
+                    }
+                    else {
+                        console.log("Error, password don't match, setting password")
+                        props.setData({ ...data, confirmedPassword: false });
                     }
                 }}
             />
