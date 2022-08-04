@@ -9,13 +9,9 @@ export default function Router() {
     return (
         <Routes>
             <Route path="/component" element={<>Component</>} />
-            <Route path="/login" element={<>Login</>} />
             <Route path="/register" element={<LeftImage><Register /></LeftImage>} />
-            {/* <Route element={<PrivateRoute redirectTo='login' />} > */}
             <Route path="/" element={<LeftImage><Home /></LeftImage>} />
-            <Route path="users/:users_id" element={<>User</>} />
-            <Route path="/dashboard" element={<>Dashboard</>} />
-            {/* </Route> */}
+            <Route path="users/:users_name" element={<>User</>} />
             <Route path="*" element={<>Error 404</>} />
         </Routes>
     )

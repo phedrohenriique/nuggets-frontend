@@ -9,36 +9,28 @@ import { request } from '../../hooks/apis'
 import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
 import { useNavigate, useParams } from 'react-router-dom'
+import { storage } from '../../hooks/storage'
 
 export const CardLogin = () => {
     const [loginData, setLoginData] = React.useState({})
-    const emailRef = React.useRef(null)
-    const passwordRef = React.useRef(null)
-    const parameters = useParams()
+    const [loginError, setLoginError] = React.useState(false)
+    // eslint-disable-next-line
+    //const parameters = useParams()
     const navigate = useNavigate()
 
-    // const dataHandler = () => {
-
-    //     // setLoginData({
-    //     //     email: emailRef.current.value,
-    //     //     password: passwordRef.current.value
-    //     // })
-
-
-    // }
-
-
     const loginHandler = async () => {
-        // setLoginData({
-        //     email: emailRef.current.value,
-        //     password: passwordRef.current.value
-        // })
-        navigate(`/users/${parameters.id}`)
-        console.log("loginData : ", JSON.stringify(loginData))
-        const response = await request.post("/users/login", loginData)
-        console.log("response : ", response)
-        
-
+        try {
+            const response = await request.post("/users/login", loginData)
+            setLoginError(false)
+            const { token, message } = response.data
+            console.log(message)
+            storage.storeData("token", JSON.stringify(token))
+            navigate(`/users/${1111}`)
+        }
+        catch (error) {
+            console.log(error.response.status)
+            setLoginError(true)
+        }
     }
 
     React.useEffect(() => {
@@ -64,14 +56,12 @@ export const CardLogin = () => {
                 placeholder="user@mail.com"
                 label="Email"
                 type="text"
-                ref={emailRef}
                 onChange={(event) => { setLoginData({ ...loginData, email: event.target.value }) }}
             />
             <InputBasic
                 placeholder="123abc"
                 label="Password"
                 type="text"
-                ref={passwordRef}
                 onChange={(event) => { setLoginData({ ...loginData, password: event.target.value }) }}
             />
             <Link
@@ -104,6 +94,11 @@ export const CardLogin = () => {
                     </Button>
                 </Link>
             </Box>
+            {
+                loginError
+                    ? <Text color="#C21F1F" styles={styles.errorText}> Invalid Login, Try again.</Text>
+                    : ''
+            }
             <Box
                 style={styles.cardsFlexColumn}
                 minHeight="fit-content"

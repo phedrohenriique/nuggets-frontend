@@ -41,7 +41,7 @@ export const CardRegister = (props) => {
             <InputBasic
                 placeholder="user@mail.com"
                 label="Email"
-                type="text"
+                type="email"
                 onChange={(event) => {
                     setData({ ...data, email: event.target.value })
                     props.setData({ ...data })

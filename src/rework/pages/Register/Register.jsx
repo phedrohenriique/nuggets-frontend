@@ -16,7 +16,7 @@ import { request } from '../../hooks/apis'
 export const Register = (props) => {
 
     const { nextStep, prevStep, setStep, activeStep } = useSteps({ initialStep: 0 })
-    const [registerData, setRegisterData] = React.useState({})
+    const [registerData, setRegisterData] = React.useState({ name: '', email: '' })
     const [registerPassword, setRegisterPassword] = React.useState('')
     const [formError, setFormError] = React.useState(false)
 
@@ -64,7 +64,7 @@ export const Register = (props) => {
             <Box
                 style={styles.cardsFlexColumn}
                 background="white"
-                width="40vw"
+                width="30vw"
                 minHeight="fit-content"
                 padding={3}
                 borderRadius={15}
@@ -80,18 +80,35 @@ export const Register = (props) => {
                         : <CardSuccess />
                 }
                 <Box
+                    marginBottom="1em"
+                >
+                    {
+                        formError && activeStep === 0
+                            ? <Text style={styles.errorText}>
+                                please fill the empty fields.
+                            </Text>
+                            : ''
+                    }
+                </Box>
+                <Box
                     style={styles.cardsFlexRow}
                     gap={3}
                     width="50%"
                 >
                     {activeStep === 0
-                        ? <>
+                        ?
+                        <>
                             <Link href="/" style={styles.linkComponent}>
                                 <Button minWidth="50%">
                                     Already Registered !
                                 </Button>
                             </Link>
                             <Button minWidth="50%" onClick={() => {
+                                if (registerData.email === '') {
+                                    setFormError(true)
+                                    return
+                                }
+                                setFormError(false)
                                 nextStep(1)
                             }}>
                                 Confirm
@@ -120,20 +137,20 @@ export const Register = (props) => {
                                         Previous
                                     </Button>
                                     <Button width="50%" onClick={async () => {
-                                        console.log(registerPassword)
-                                        if (registerPassword.confirmedPassword === true) {
+                                        console.log( "inside button : ", registerPassword)
+                                        if (registerPassword.password === registerPassword.confirmPassword) {
                                             try {
                                                 await request.post("/users", JSON.stringify(dataHandler()))
                                                 setStep(3);
                                             }
                                             catch (error) {
                                                 console.log("Error, invalid inputs : ", error)
-                                                setFormError(true)
                                                 return
                                             }
                                         }
                                         else {
                                             console.log("Error, password don't match, register")
+                                            console.log(registerPassword)
                                             setFormError(true)
                                             return
                                         }
