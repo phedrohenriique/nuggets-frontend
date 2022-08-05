@@ -3,16 +3,21 @@ import {
     Box,
     Text,
     Button,
-    FormControl
+    FormControl,
+    InputGroup,
+    InputRightAddon
 } from '@chakra-ui/react'
 import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
 import { request } from '../../hooks/apis'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 export const CardPassword = (props) => {
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
     const [formError, setFormError] = React.useState(false)
+    const [showFirst, setShowFirst] = React.useState(false)
+    const [showSecond, setShowSecond] = React.useState(false)
 
     const submitHandler = async () => {
 
@@ -52,18 +57,40 @@ export const CardPassword = (props) => {
             >
                 Password
             </Text>
-            <InputBasic
-                placeholder="123abc"
-                label="Password"
-                type="text"
-                onChange={(event) => { setPassword(event.target.value) }}
-            />
-            <InputBasic
-                placeholder="123abc"
-                label="Confirm Password"
-                type="text"
-                onChange={(event) => { setConfirmPassword(event.target.value) }}
-            />
+            <InputGroup>
+                <InputBasic
+                    placeholder="123abc"
+                    label="Password"
+                    type={showFirst ? "text" : "password"}
+                    onChange={(event) => { setPassword(event.target.value) }}
+                />
+                <InputRightAddon alignSelf="flex-end" children={
+                    <Button onClick={() => { setShowFirst(!showFirst) }}>
+                        {
+                            showFirst
+                                ? <FiEye />
+                                : <FiEyeOff />
+                        }
+                    </Button>}
+                />
+            </InputGroup>
+            <InputGroup>
+                <InputBasic
+                    placeholder="123abc"
+                    label="Confirm Password"
+                    type={showSecond ? "text" : "password"}
+                    onChange={(event) => { setConfirmPassword(event.target.value) }}
+                />
+                <InputRightAddon alignSelf="flex-end" children={
+                    <Button onClick={() => { setShowSecond(!showSecond) }}>
+                        {
+                            showSecond
+                                ? <FiEye />
+                                : <FiEyeOff />
+                        }
+                    </Button>}
+                />
+            </InputGroup>
             {
                 formError
                     ? <Text style={styles.errorText}>Passwords don't match, key again please</Text>

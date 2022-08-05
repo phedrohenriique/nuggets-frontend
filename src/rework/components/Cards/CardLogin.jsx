@@ -4,17 +4,21 @@ import {
     Text,
     Button,
     Link,
-    FormControl
+    FormControl,
+    InputGroup,
+    InputRightAddon
 } from '@chakra-ui/react'
 import { request } from '../../hooks/apis'
 import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
 import { useNavigate, useParams } from 'react-router-dom'
 import { storage } from '../../hooks/storage'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 export const CardLogin = () => {
     const [loginData, setLoginData] = React.useState({})
     const [loginError, setLoginError] = React.useState(false)
+    const [show, setShow] = React.useState(false)
     // eslint-disable-next-line
     //const parameters = useParams()
     const navigate = useNavigate()
@@ -59,12 +63,23 @@ export const CardLogin = () => {
                 type="text"
                 onChange={(event) => { setLoginData({ ...loginData, email: event.target.value }) }}
             />
-            <InputBasic
-                placeholder="123abc"
-                label="Password"
-                type="text"
-                onChange={(event) => { setLoginData({ ...loginData, password: event.target.value }) }}
-            />
+            <InputGroup>
+                <InputBasic
+                    placeholder="123abc"
+                    label="Password"
+                    type={show ? "text" : "password"}
+                    onChange={(event) => { setLoginData({ ...loginData, password: event.target.value }) }}
+                />
+                <InputRightAddon alignSelf="flex-end" children={
+                    <Button onClick={() => { setShow(!show) }}>
+                        {
+                            show
+                                ? <FiEye />
+                                : <FiEyeOff />
+                        }
+                    </Button>
+                } />
+            </InputGroup>
             <Link
                 alignSelf="flex-start"
                 style={styles.link}
@@ -77,7 +92,7 @@ export const CardLogin = () => {
                 gap={3}
             >
                 <Button
-                    
+
                     fontSize="md"
                     onClick={loginHandler}
                 >

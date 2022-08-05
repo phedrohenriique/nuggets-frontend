@@ -10,7 +10,6 @@ export const Home = () => {
             style={styles.pages}
         >
             <CardLogin />
-            {/* <button type="submit" onClick={dataHandlerPost}>Testing post</button> */}
         </Box >
     )
 }
