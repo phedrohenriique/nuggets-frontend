@@ -1,23 +1,32 @@
 import React from 'react'
 import {
     Box,
-    Text
+    Text,
+    Link,
+    Button,
+    FormControl
 } from '@chakra-ui/react'
 import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
 
 export const CardRegister = (props) => {
+    const [name, setName] = React.useState('')
+    const [email, setEmail] = React.useState('')
+    const [formError, setFormError] = React.useState(false)
+    const submitHandler = () => {
+        try {
 
-    const [data, setData] = React.useState({
-        name: '',
-        email: ''
-    })
+        }
+        catch {
+
+        }
+    }
 
     return (
-        <Box
+        <FormControl
             style={styles.cardsFlexColumn}
             background="white"
-            minWidth="20vw"
+            minWidth="100%"
             minHeight="60vh"
             borderRadius={15}
             padding={3}
@@ -33,26 +42,32 @@ export const CardRegister = (props) => {
                 placeholder="Name Surname"
                 label="Name"
                 type="text"
-                onChange={(event) => {
-                    setData({ ...data, name: event.target.value })
-                    props.setData({ ...data })
-                }}
+                onChange={(event) => { setName(event.target.value) }}
             />
             <InputBasic
                 placeholder="user@mail.com"
                 label="Email"
-                type="email"
-                onChange={(event) => {
-                    setData({ ...data, email: event.target.value })
-                    props.setData({ ...data })
-                }}
+                type="text"
+                onChange={(event) => { setEmail(event.target.value) }}
             />
             <Box
-                style={styles.cardsFlexRow}
-                minWidth="fit-content"
-                gap={3}
+                display="flex"
+                width="100%"
+                flexDirection="row"
+                gap="1em"
             >
+                <Link width="50%" href="/" style={styles.linkComponent}>
+                    <Button width="100%">
+                        Already Registered !
+                    </Button>
+                </Link>
+                <Button type="button" width="50%" onClick={() => {
+                    props.nextStep(1)
+                    props.dataHandler({ name: name, email: email })
+                }}>
+                    Confirm
+                </Button>
             </Box>
-        </Box>
+        </FormControl>
     )
 }

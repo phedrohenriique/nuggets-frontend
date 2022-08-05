@@ -1,27 +1,38 @@
 import React from 'react'
 import {
     Box,
-    Text
+    Text,
+    Button,
+    FormControl
 } from '@chakra-ui/react'
 import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
+import { request } from '../../hooks/apis'
 
 export const CardPassword = (props) => {
-    const passwordRef = React.useRef(null)
-    const confirmPasswordRef = React.useRef(null)
+    const [password, setPassword] = React.useState('')
+    const [confirmPassword, setConfirmPassword] = React.useState('')
+    const [formError, setFormError] = React.useState(false)
+
+    const submitHandler = async () => {
+
+        const data = { ...props.postData, password: password, confirmPassword: confirmPassword }
+        //console.log("data inside handler : ", data)
+
+        try {
+            const response = await request.post("/users", JSON.stringify(data))
+            props.nextStep(3)
+            console.log(response.status)
+        }
+        catch (error) {
+            console.log(error.response.message)
+        }
 
 
-    const value_1 = passwordRef.current.value
-    const value_2 = confirmPasswordRef.current.value
-
-
-    const [data, setData] = React.useState({
-        password: '',
-        confirmPassword: ''
-    })
+    }
 
     return (
-        <Box
+        <FormControl
             style={styles.cardsFlexColumn}
             background="white"
             minWidth="20vw"
@@ -39,27 +50,14 @@ export const CardPassword = (props) => {
             <InputBasic
                 placeholder="123abc"
                 label="Password"
-                type="password"
-                onChange={(event) => { console.log("ref 1 : ",value_1); setData({ ...data, password: event.target.value }) }}
-                ref={passwordRef}
+                type="text"
+                onChange={(event) => { setPassword(event.target.value) }}
             />
             <InputBasic
                 placeholder="123abc"
                 label="Confirm Password"
-                type="password"
-                onChange={(event) => {
-                    console.log("ref 2 : ",value_2)
-                    if (event.target.value === data.password) {
-                        console.log("passwords match")
-                        setData({ ...data, confirmPassword: event.target.value })
-                        props.setData({ ...data });
-                    }
-                    if (event.target.value !== data.password) {
-                        console.log("Error, password don't match, setting password")
-                        //props.setData({ ...data, confirmPassword: event.target.value });
-                    }
-                }}
-                ref={confirmPasswordRef}
+                type="text"
+                onChange={(event) => { setConfirmPassword(event.target.value) }}
             />
             <Box
                 style={styles.cardsFlexRow}
@@ -67,6 +65,23 @@ export const CardPassword = (props) => {
                 gap={3}
             >
             </Box>
-        </Box>
+            <Box
+                width="100%"
+                display="flex"
+                flexDirection="row"
+                gap={2}
+            >
+                <Button width="50%" onClick={() => {
+                    //setFormError(false)
+                    props.prevStep(1)
+                }}>
+                    Previous
+                </Button>
+                <Button width="50%" onClick={() => { submitHandler() }} >
+                    Submit
+                </Button>
+            </Box>
+        </FormControl>
     )
+
 }

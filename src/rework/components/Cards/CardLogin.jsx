@@ -3,7 +3,8 @@ import {
     Box,
     Text,
     Button,
-    Link
+    Link,
+    FormControl
 } from '@chakra-ui/react'
 import { request } from '../../hooks/apis'
 import { InputBasic } from '../Inputs/InputBasic'
@@ -37,13 +38,13 @@ export const CardLogin = () => {
     }, [])
 
     return (
-        <Box
+        <FormControl
             style={styles.cardsFlexColumn}
             background="white"
-            minWidth="25vw"
-            minHeight="60vh"
+            maxWidth="30vw"
+            minHeight="fit-content"
             borderRadius={15}
-            padding={6}
+            padding={3}
             gap={3}
         >
             <Text
@@ -72,11 +73,11 @@ export const CardLogin = () => {
             </Link>
             <Box
                 style={styles.cardsFlexRow}
-                minWidth="fit-content"
+                width="fit-content"
                 gap={3}
             >
                 <Button
-                    maxWidth="50%"
+                    
                     fontSize="md"
                     onClick={loginHandler}
                 >
@@ -85,7 +86,6 @@ export const CardLogin = () => {
                 <Link
                     style={styles.linkComponent}
                     href="/register"
-                    maxWidth="50%"
                 >
                     <Button
                         fontSize="md"
@@ -116,6 +116,6 @@ export const CardLogin = () => {
                     <Box width="50px" height="50px" background="blue" />
                 </Box>
             </Box>
-        </Box>
+        </FormControl>
     )
 }

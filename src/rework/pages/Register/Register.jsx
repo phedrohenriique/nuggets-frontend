@@ -1,9 +1,6 @@
 import React from 'react'
 import {
     Box,
-    Button,
-    Link,
-    Text
 } from '@chakra-ui/react'
 import { StepBasic } from '../../components/Steps/StepBasic'
 import { CardRegister } from '../../components/Cards/CardRegister'
@@ -11,19 +8,11 @@ import { CardPassword } from '../../components/Cards/CardPassword'
 import { CardSuccess } from '../../components/Cards/CardSuccess'
 import { styles } from '../../config/styles'
 import { useSteps } from 'chakra-ui-steps'
-import { request } from '../../hooks/apis'
 
 export const Register = (props) => {
 
     const { nextStep, prevStep, setStep, activeStep } = useSteps({ initialStep: 0 })
-    const [registerData, setRegisterData] = React.useState({ name: '', email: '' })
-    const [registerPassword, setRegisterPassword] = React.useState('')
-    const [formError, setFormError] = React.useState(false)
-
-    const dataHandler = () => {
-        const data = { ...registerData, password: registerPassword.password }
-        return data
-    }
+    const [registerData, setRegisterData] = React.useState({})
 
     const steps = [
         {
@@ -31,7 +20,7 @@ export const Register = (props) => {
             key: 1
         },
         {
-            label: "Pssword",
+            label: "Password",
             key: 2
         },
         {
@@ -39,6 +28,8 @@ export const Register = (props) => {
             key: 3
         }
     ]
+
+    /////////////// ACTIVE STEP /////////////////
 
     const activeStepHandler = (activeStep) => {
         if (activeStep < 0) {
@@ -49,8 +40,6 @@ export const Register = (props) => {
             setStep(steps.length)
             return activeStep
         }
-
-
         return activeStep
     }
 
@@ -64,7 +53,7 @@ export const Register = (props) => {
             <Box
                 style={styles.cardsFlexColumn}
                 background="white"
-                width="30vw"
+                minWidth="30vw"
                 minHeight="fit-content"
                 padding={3}
                 borderRadius={15}
@@ -74,102 +63,18 @@ export const Register = (props) => {
                     stepList={steps}
                 />
                 {activeStep === 0
-                    ? <CardRegister setData={setRegisterData} />
+                    ? <CardRegister
+                        nextStep={nextStep}
+                        dataHandler={setRegisterData} />
                     : activeStep === 1
-                        ? <CardPassword setData={setRegisterPassword} />
+                        ? <CardPassword
+                            postData={registerData}
+                            prevStep={prevStep}
+                            nextStep={setStep}
+
+                        />
                         : <CardSuccess />
                 }
-                <Box
-                    marginBottom="1em"
-                >
-                    {
-                        formError && activeStep === 0
-                            ? <Text style={styles.errorText}>
-                                please fill the empty fields.
-                            </Text>
-                            : ''
-                    }
-                </Box>
-                <Box
-                    style={styles.cardsFlexRow}
-                    gap={3}
-                    width="50%"
-                >
-                    {activeStep === 0
-                        ?
-                        <>
-                            <Link href="/" style={styles.linkComponent}>
-                                <Button minWidth="50%">
-                                    Already Registered !
-                                </Button>
-                            </Link>
-                            <Button minWidth="50%" onClick={() => {
-                                if (registerData.email === '') {
-                                    setFormError(true)
-                                    return
-                                }
-                                setFormError(false)
-                                nextStep(1)
-                            }}>
-                                Confirm
-                            </Button>
-                        </>
-                        : activeStep === 1
-                            ? <Box
-                                display="flex"
-                                flexDirection="column"
-                            >{
-                                    formError
-                                        ? <Text style={styles.errorText}>
-                                            There was an error, review your info please !
-                                        </Text>
-                                        : ''
-                                }
-                                <Box
-                                    display="flex"
-                                    flexDirection="row"
-                                    gap={2}
-                                >
-                                    <Button width="50%" onClick={() => {
-                                        setFormError(false)
-                                        prevStep(1)
-                                    }}>
-                                        Previous
-                                    </Button>
-                                    <Button width="50%" onClick={async () => {
-                                        console.log( "inside button : ", registerPassword)
-                                        if (registerPassword.password === registerPassword.confirmPassword) {
-                                            try {
-                                                await request.post("/users", JSON.stringify(dataHandler()))
-                                                setStep(3);
-                                            }
-                                            catch (error) {
-                                                console.log("Error, invalid inputs : ", error)
-                                                return
-                                            }
-                                        }
-                                        else {
-                                            console.log("Error, password don't match, register")
-                                            console.log(registerPassword)
-                                            setFormError(true)
-                                            return
-                                        }
-                                    }}>
-                                        Submit
-                                    </Button>
-                                </Box>
-
-                            </Box>
-                            : <Link
-                                href="/"
-                                style={styles.linkComponent}
-                            >
-                                <Button>
-                                    Back to Login
-                                </Button>
-                            </Link>
-                    }
-                </Box>
             </Box>
         </Box >
     )
