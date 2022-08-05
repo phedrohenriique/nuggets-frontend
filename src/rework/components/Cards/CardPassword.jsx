@@ -17,7 +17,12 @@ export const CardPassword = (props) => {
     const submitHandler = async () => {
 
         const data = { ...props.postData, password: password, confirmPassword: confirmPassword }
-        //console.log("data inside handler : ", data)
+
+        if (data.password !== data.confirmPassword) {
+            setFormError(true)
+            console.log("passwords don't match, try again please")
+            return
+        }
 
         try {
             const response = await request.post("/users", JSON.stringify(data))
@@ -59,6 +64,11 @@ export const CardPassword = (props) => {
                 type="text"
                 onChange={(event) => { setConfirmPassword(event.target.value) }}
             />
+            {
+                formError
+                    ? <Text style={styles.errorText}>Passwords don't match, key again please</Text>
+                    : ''
+            }
             <Box
                 style={styles.cardsFlexRow}
                 minWidth="fit-content"

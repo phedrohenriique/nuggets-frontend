@@ -14,12 +14,17 @@ export const CardRegister = (props) => {
     const [email, setEmail] = React.useState('')
     const [formError, setFormError] = React.useState(false)
     const submitHandler = () => {
-        try {
 
+        if (name !== '' && email !== '') {
+            props.nextStep(1)
+            props.dataHandler({ name: name, email: email })
         }
-        catch {
+        else {
+            console.log("form fields are empty, fill the inputs")
+            setFormError(true)
+        }
 
-        }
+
     }
 
     return (
@@ -50,6 +55,11 @@ export const CardRegister = (props) => {
                 type="text"
                 onChange={(event) => { setEmail(event.target.value) }}
             />
+            {
+                formError
+                    ? <Text style={styles.errorText}>Form fields are empty, fill the inputs</Text>
+                    : ''
+            }
             <Box
                 display="flex"
                 width="100%"
@@ -62,8 +72,7 @@ export const CardRegister = (props) => {
                     </Button>
                 </Link>
                 <Button type="button" width="50%" onClick={() => {
-                    props.nextStep(1)
-                    props.dataHandler({ name: name, email: email })
+                    submitHandler()
                 }}>
                     Confirm
                 </Button>
