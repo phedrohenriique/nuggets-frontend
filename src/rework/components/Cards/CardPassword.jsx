@@ -93,7 +93,7 @@ export const CardPassword = (props) => {
             </InputGroup>
             {
                 formError
-                    ? <Text style={styles.errorText}>Passwords don't match, key again please</Text>
+                    ? <Text style={styles.errorText}>Passwords don't match, try again please</Text>
                     : ''
             }
             <Box

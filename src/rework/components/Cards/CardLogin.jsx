@@ -25,20 +25,35 @@ export const CardLogin = () => {
 
     const loginHandler = async () => {
         try {
-            const response = await request.post("/users/login", loginData)
+            const responseLogin = await request.post("/users/login", loginData)
             setLoginError(false)
-            const { token, message } = response.data
+            const { token, message } = responseLogin.data
             console.log(message)
-            storage.storeData("token", JSON.stringify(token))
-            navigate(`/users/${1111}`)
+            if (token === null) {
+                return
+            }
+            storage.storeData("token", token)
+            console.log(storage.getData("token"))
+            const responseLoginData = await request.get("/users/login/user", {
+                headers: { "Authorization": `Bearer ${storage.getData("token")}` }
+            })
+            storage.storeData("user", responseLoginData.data.user)
+            navigate(`/users/login/user?users_name=${storage.getData("user").name}`)
         }
         catch (error) {
-            console.log(error.response.status)
+            console.log(error)
             setLoginError(true)
+            return
         }
     }
 
     React.useEffect(() => {
+        document.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                console.log("Enter pressed")
+                loginHandler()
+            }
+        })
     }, [])
 
     return (
@@ -58,6 +73,7 @@ export const CardLogin = () => {
                 Login
             </Text>
             <InputBasic
+                id="1"
                 placeholder="user@mail.com"
                 label="Email"
                 type="text"
@@ -65,6 +81,7 @@ export const CardLogin = () => {
             />
             <InputGroup>
                 <InputBasic
+                    id="2"
                     placeholder="123abc"
                     label="Password"
                     type={show ? "text" : "password"}
@@ -92,7 +109,6 @@ export const CardLogin = () => {
                 gap={3}
             >
                 <Button
-
                     fontSize="md"
                     onClick={loginHandler}
                 >
