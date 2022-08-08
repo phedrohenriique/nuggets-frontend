@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react'
 import { styles } from '../../config/styles'
 import { CardLogin } from '../../components/Cards/CardLogin'
 
-export const Home = () => {
+export const Login = () => {
 
     return (
         <Box

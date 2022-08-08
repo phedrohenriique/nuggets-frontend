@@ -10,6 +10,17 @@ const pages = {
     alignItems: "center"
 }
 
+const pagesBasic = {
+    background: colors.pagesBackground,
+    width: "100vw",
+    height: "100vh",
+    display: "flex",
+}
+
+const menu = {
+    background: colors.pagesMenu
+}
+
 const cardsCenterItems = {
     display: "flex",
     alignItems: "center",
@@ -56,6 +67,8 @@ const errorText = {
 
 export const styles = {
     pages,
+    pagesBasic,
+    menu,
     textTitles,
     textInputs,
     cardsFlexColumn,

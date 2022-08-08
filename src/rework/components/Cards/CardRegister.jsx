@@ -66,7 +66,7 @@ export const CardRegister = (props) => {
                 flexDirection="row"
                 gap="1em"
             >
-                <Link width="50%" href="/" style={styles.linkComponent}>
+                <Link width="50%" href="/login" style={styles.linkComponent}>
                     <Button width="100%">
                         Already Registered !
                     </Button>
