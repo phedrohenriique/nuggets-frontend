@@ -18,6 +18,7 @@ const pagesBasic = {
 }
 
 const menu = {
+    display: "flex",
     background: colors.pagesMenu
 }
 

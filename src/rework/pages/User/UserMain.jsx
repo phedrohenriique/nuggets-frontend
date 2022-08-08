@@ -5,8 +5,16 @@ import {
     Button
 } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
+import { colors } from '../../config/colors'
 
 export const UserMain = (props) => {
+    const [isOpen, setOpen] = React.useState(false)
+
+    const sideMenu = {
+        openWidth: "30vw",
+        closeWidth: "0vw"
+    }
+
     return (
         <Box
             style={styles.pagesBasic}
@@ -14,17 +22,38 @@ export const UserMain = (props) => {
         >
             <Box
                 height="100vh"
-                width="30vw"
+                width={isOpen ? "30vw" : "0vw"}
                 style={styles.menu}
+                flexDirection="row"
             >
-                <Button
-                    size="md"
-                    borderRadius="50%"
-                    border="2px solid black"
-                    position="absolute"
-                    left="28.5%"
-                    top="10%"
-                />
+                <Box
+                    width="100%"
+                >
+
+                </Box>
+                <Box
+                    display="flex"
+                    flexDirection="row"
+                    background={colors.pagesMenu}
+                >
+                    <Button
+                        marginTop="50px"
+                        size="md"
+                        borderRadius="50%"
+                        border="1px solid black"
+                        position="relative"
+                        left="20px"
+                        onClick={() => {
+                            setOpen(!isOpen)
+                        }}
+                    >
+                        {
+                            isOpen
+                                ? "<"
+                                : ">"
+                        }
+                    </Button>
+                </Box>
             </Box>
             <Outlet />
         </Box>
