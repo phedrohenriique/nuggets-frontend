@@ -1,9 +1,7 @@
 import React from 'react'
 import {
     Box,
-    Text,
-    Link,
-    Button
+    Text
 } from '@chakra-ui/react'
 import { styles } from '../../config/styles'
 

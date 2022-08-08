@@ -11,7 +11,7 @@ import {
 import { request } from '../../hooks/apis'
 import { InputBasic } from '../Inputs/InputBasic'
 import { styles } from '../../config/styles'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { storage } from '../../hooks/storage'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 
@@ -19,8 +19,7 @@ export const CardLogin = () => {
     const [loginData, setLoginData] = React.useState({})
     const [loginError, setLoginError] = React.useState(false)
     const [show, setShow] = React.useState(false)
-    // eslint-disable-next-line
-    //const parameters = useParams()
+
     const navigate = useNavigate()
 
     const loginHandler = async () => {
@@ -33,12 +32,14 @@ export const CardLogin = () => {
                 return
             }
             storage.storeData("token", token)
-            console.log(storage.getData("token"))
+
             const responseLoginData = await request.get("/users/login/user", {
                 headers: { "Authorization": `Bearer ${storage.getData("token")}` }
             })
-            storage.storeData("user", responseLoginData.data.user)
-            navigate(`/users/login/user?users_name=${storage.getData("user").name}`)
+
+            storage.storeData("name", responseLoginData.data.user.name)
+            storage.storeData("email", responseLoginData.data.user.email)
+            navigate(`/users/login/${storage.getData("name")}`)
         }
         catch (error) {
             console.log(error)
