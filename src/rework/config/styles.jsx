@@ -19,7 +19,10 @@ const pagesBasic = {
 
 const menu = {
     display: "flex",
-    background: colors.pagesMenu
+    background: colors.pagesMenu,
+    fontFamily: fonts.montserrat,
+    weight: "bold"
+
 }
 
 const cardsCenterItems = {
