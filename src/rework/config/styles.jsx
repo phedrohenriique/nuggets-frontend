@@ -25,6 +25,11 @@ const menu = {
 
 }
 
+const menuSide = {
+    height: "100%",
+    background: colors.pagesMenu,
+}
+
 const cardsCenterItems = {
     display: "flex",
     alignItems: "center",
@@ -73,6 +78,7 @@ export const styles = {
     pages,
     pagesBasic,
     menu,
+    menuSide,
     textTitles,
     textInputs,
     cardsFlexColumn,
