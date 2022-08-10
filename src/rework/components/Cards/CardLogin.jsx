@@ -39,7 +39,7 @@ export const CardLogin = () => {
 
             storage.storeData("name", responseLoginData.data.user.name)
             storage.storeData("email", responseLoginData.data.user.email)
-            navigate(`/users/login/${storage.getData("name")}`)
+            navigate(`/users/login/name=${storage.getData("name")}`)
         }
         catch (error) {
             console.log(error)

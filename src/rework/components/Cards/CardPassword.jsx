@@ -16,6 +16,7 @@ export const CardPassword = (props) => {
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
     const [formError, setFormError] = React.useState(false)
+    const [serverError, setServerError] = React.useState(false)
     const [showFirst, setShowFirst] = React.useState(false)
     const [showSecond, setShowSecond] = React.useState(false)
 
@@ -36,6 +37,11 @@ export const CardPassword = (props) => {
         }
         catch (error) {
             console.log(error.response.message)
+            if (error.response.status !== 200) {
+                console.log(`Error, server code response : `, error.response.status)
+                setServerError(true)
+                return
+            }
         }
 
 
@@ -59,6 +65,7 @@ export const CardPassword = (props) => {
             </Text>
             <InputGroup>
                 <InputBasic
+                    id="password"
                     placeholder="123abc"
                     label="Password"
                     type={showFirst ? "text" : "password"}
@@ -76,6 +83,7 @@ export const CardPassword = (props) => {
             </InputGroup>
             <InputGroup>
                 <InputBasic
+                    id="confirmPassword"
                     placeholder="123abc"
                     label="Confirm Password"
                     type={showSecond ? "text" : "password"}
@@ -94,7 +102,9 @@ export const CardPassword = (props) => {
             {
                 formError
                     ? <Text style={styles.errorText}>Passwords don't match, try again please</Text>
-                    : ''
+                    : serverError
+                        ? <Text style={styles.errorText}>Can't register, something is wrong</Text>
+                        : ''
             }
             <Box
                 style={styles.cardsFlexRow}

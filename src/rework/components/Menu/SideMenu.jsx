@@ -4,11 +4,9 @@ import {
     Box,
     Button,
     Text,
-    Drawer,
-    DrawerContent,
     useDisclosure,
-    DrawerOverlay,
-    Slide
+    Slide,
+    Link
 } from '@chakra-ui/react'
 import { colors } from '../../config/colors'
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi'
@@ -41,7 +39,7 @@ export const SideMenu = (props) => {
                     display="flex"
                     flexDirection="column"
                 >
-                    <Box>adadad</Box>
+                    <Link href="/users/login/clients"><Box>adadad</Box></Link>
                     <Box>adadad</Box>
                 </Box>
             </Slide>
@@ -72,6 +70,7 @@ export const SideMenu = (props) => {
                         height="70%"
                         background={colors.pagesMenu}
                         borderRadius="10px"
+                        color="white"
                     >
                         {props.children}
                     </Box>
