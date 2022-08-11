@@ -7,9 +7,7 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
-import { SideMenu } from '../../components/Menu/SideMenu'
-import { UserInfo } from './UserInfo'
-import { OptionsMenu } from '../../components/Menu/OptionsMenu'
+import { MenuSide } from '../../components/Menu/MenuSide'
 
 export const UserMain = (props) => {
     const { isOpen, onToggle } = useDisclosure()
@@ -21,9 +19,9 @@ export const UserMain = (props) => {
             display="flex"
             flexDirection="row"
         >
-            <SideMenu>
+            <MenuSide>
                 <Outlet onToggle={onToggle} />
-            </SideMenu>
+            </MenuSide>
         </Box>
     )
 }

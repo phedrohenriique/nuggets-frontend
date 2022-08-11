@@ -21,6 +21,19 @@ export const Button = {
             _active: {
                 background: "#6A609780" // just add two last values to change opacity
             }
+        },
+        "linkButton": {
+            color: "white",
+            background: "#270645",
+            border: "2px solid white",
+            _hover : {
+                transform : "scale(1.05)",
+                background: "#6A609780"
+            },
+            _active: {
+                background: "#6A609780"
+            }
+
         }
     },
     defaultProps: {

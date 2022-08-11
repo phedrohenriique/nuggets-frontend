@@ -12,7 +12,7 @@ import { colors } from '../../config/colors'
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
 
-export const SideMenu = (props) => {
+export const MenuSide = (props) => {
     const { isOpen, onToggle } = useDisclosure()
     const parameters = useParams()
 

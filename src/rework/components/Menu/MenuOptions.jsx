@@ -3,7 +3,7 @@ import { Box, Text } from '@chakra-ui/react'
 import { styles } from '../../config/styles'
 import { useParams } from 'react-router-dom'
 
-export const OptionsMenu = (props) => {
+export const MenuOptions = (props) => {
     const parameters = useParams()
 
     return (
