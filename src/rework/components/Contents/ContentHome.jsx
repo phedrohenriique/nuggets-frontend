@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react'
 import { colors } from '../../config/colors'
 import { styles } from '../../config/styles'
+import { FooterBasic } from '../Footer/FooterBasic'
 import mountainsOne from '../../assets/mountains_01.jpg'
 import mountainsTwo from '../../assets/mountains_02.jpg'
 
@@ -41,7 +42,10 @@ export const ContentHome = (props) => {
                     _hover={{ transform: "scale(1.05)", transition: "0.5s" }}
                 >
                     <Text styles={styles.textTitles} >
-                        O Projeto é feito para que o tempo de procura pelo preço de algum item seja reduzido, melhorando assim as cotações por locais aonde não se teve contato prévio com empresas nativas.
+                        The Project is designed to reduce the search time for the price of an item, thus improving quotations in places where there was no previous contact with native companies.
+                    </Text>
+                    <Text styles={styles.textTitles} >
+                        The idea of ​​the project is that registered customers have access to a dashboard to manage their purchases or finances, so that they can evaluate the best price in a given region, currently the main goal of the application is retrieve the users data and attach it to their list.
                     </Text>
                 </Box>
                 <Box
@@ -53,10 +57,11 @@ export const ContentHome = (props) => {
                 >
                     <Image
                         borderRadius="10px"
-                        //src={mountainsOne}
+                    //src={mountainsOne}
                     />
                 </Box>
             </Box>
+            <FooterBasic />
         </Box>
     )
 }

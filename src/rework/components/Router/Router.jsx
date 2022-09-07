@@ -6,13 +6,16 @@ import { LeftImage } from "../../pages/LeftImage/LeftImage";
 import { UserMain } from "../../pages/User/UserMain";
 import { UserInfo } from "../../pages/User/UserInfo";
 import { Home } from "../../pages/Home/Home";
+import { ContentHome } from "../Contents/ContentHome";
 
 export default function Router() {
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<>About</>} />
-            <Route path="/products" element={<>Products</>} />
+            <Route path="/" element={<Home />}>
+                <Route path="/" element={<ContentHome />} />
+                <Route path="/about" element={<>About</>} />
+                <Route path="/products" element={<>Products</>} />
+            </Route>
             <Route path="/component" element={<>Component</>} />
             <Route path="/login" element={<LeftImage><Login /></LeftImage>} />
             <Route path="/register" element={<LeftImage><Register /></LeftImage>} />

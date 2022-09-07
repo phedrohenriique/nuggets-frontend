@@ -1,15 +1,10 @@
 import React from 'react'
 import {
     Box,
-    Text,
-    Image
 } from '@chakra-ui/react'
+import { Outlet } from 'react-router-dom'
 import { MenuNavigation } from '../../components/Menu/MenuNavigation'
-import { ContentHome } from '../../components/Contents/ContentHome'
 import { FooterBasic } from '../../components/Footer/FooterBasic'
-import { colors } from '../../config/colors'
-import { styles } from '../../config/styles'
-import mountainsOne from '../../assets/mountains_01.jpg'
 
 export const Home = (props) => {
     return (
@@ -20,7 +15,7 @@ export const Home = (props) => {
             flexDirection="column"
         >
             <MenuNavigation />
-            <ContentHome />
+            <Outlet />
         </Box>
     )
 }
