@@ -11,6 +11,8 @@ export default function Router() {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<>About</>} />
+            <Route path="/products" element={<>Products</>} />
             <Route path="/component" element={<>Component</>} />
             <Route path="/login" element={<LeftImage><Login /></LeftImage>} />
             <Route path="/register" element={<LeftImage><Register /></LeftImage>} />

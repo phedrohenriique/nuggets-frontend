@@ -53,17 +53,20 @@ export const MenuNavigation = (props) => {
                     alignItems="center"
                     justifyContent="space-around"
                 >
-                    <Link style={styles.linkComponent}>
+                    <Link href="/" style={styles.linkComponent}>
                         <Button variant="linkButton">Home</Button>
                     </Link>
-                    <Link style={styles.linkComponent}>
+                    <Link href="/about" style={styles.linkComponent}>
                         <Button variant="linkButton">About</Button>
                     </Link>
-                    <Link style={styles.linkComponent}>
+                    <Link href="/products" style={styles.linkComponent}>
                         <Button variant="linkButton">Products</Button>
                     </Link>
-                    <Link href="/login" style={styles.linkComponent}>
+                    <Link href="/register" style={styles.linkComponent}>
                         <Button variant="linkButton">Register</Button>
+                    </Link>
+                    <Link href="/login" style={styles.linkComponent}>
+                        <Button variant="linkButton">Login</Button>
                     </Link>
                 </Box>
                 <Box

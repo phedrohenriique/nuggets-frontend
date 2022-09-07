@@ -1,9 +1,6 @@
 import React from 'react'
-import { styles } from '../../config/styles'
-import { colors } from '../../config/colors'
 import {
     Box,
-    Button,
     useDisclosure
 } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
